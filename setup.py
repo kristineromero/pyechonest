@@ -12,6 +12,8 @@ if version < '2.6':
     requires=['urllib', 'urllib2', 'simplejson']
 elif version >= '2.6':
     requires=['urllib', 'urllib2', 'json']
+elif version >= '3.0':
+    requires=['urllib', 'json']
 else:
     #unknown version?
     requires=['urllib', 'urllib2']

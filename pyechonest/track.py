@@ -1,4 +1,7 @@
-import urllib2
+try:
+    import urllib.request as urllib2
+except ImportError:
+    import urllib2
 try:
     import json
 except ImportError:
@@ -43,7 +46,7 @@ class Track(TrackProxy):
         valence                 float: a range from negative to positive emotional content (0.0 to 1.0)
 
     The following attributes are available only after calling Track.get_analysis():
-    
+
         analysis_channels       int: the number of audio channels used during analysis
         analysis_sample_rate    int: the sample rate used during analysis
         bars                    list of dicts: timing of each measure
@@ -69,7 +72,7 @@ class Track(TrackProxy):
         tatums                  list of dicts: the smallest metrical unit (subdivision of a beat)
         tempo_confidence        float: confidence that tempo detection was accurate
         time_signature_confidence float: confidence that time_signature detection was accurate
-    
+
     Each bar, beat, section, segment and tatum has a start time, a duration, and a confidence,
     in addition to whatever other data is given.
 
@@ -113,9 +116,9 @@ class Track(TrackProxy):
 
     def __str__(self):
         return self.title.encode('utf-8')
-        
+
     def get_analysis(self):
-        """ Retrieve the detailed analysis for the track, if available. 
+        """ Retrieve the detailed analysis for the track, if available.
             Raises Exception if unable to create the detailed analysis. """
         if self.analysis_url:
             try:
